@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.tung.lesson6_realm_database.screen.search_user_fragment.SearchUserViewModel"
+            />
+
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <EditText
+                android:id="@+id/text_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_toLeftOf="@+id/button_search"
+                android:layout_toStartOf="@+id/button_search"
+                android:hint="Enter keywork here"
+                android:maxLines="1"
+                app:onEditorActionListener="@{viewModel.onEditorActionListener}"
+                android:text="@={viewModel.keyword}"
+                />
+            <Button
+                android:id="@+id/button_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:onClick="@{viewModel::onButtonSearchClicked}"
+                android:text="Search"
+                />
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_search_user"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="LinearLayoutManager"
+            app:recyclerAdapter="@{viewModel.adapter}"
+            />
+
+    </LinearLayout>
+</layout>
